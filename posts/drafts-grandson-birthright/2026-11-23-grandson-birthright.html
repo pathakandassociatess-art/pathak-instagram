@@ -1,0 +1,163 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Pathak & Associates – Post</title>
+<style>
+  :root{
+    --ink:#0b0d0f; --ivory:#f3efe6; --muted:#9a968e;
+    --gold:#d4af5f; --gold2:#f2d68b; --gold3:#a8823a;
+    --red:#d32f2f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1350px;overflow:hidden;background:var(--ink)}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--ivory)}
+  .slide{display:none;width:1080px;height:1350px;position:relative;overflow:hidden;padding:70px 76px 0;
+    background:
+      radial-gradient(900px 700px at 85% 15%, rgba(212,175,95,.22) 0%, transparent 60%),
+      radial-gradient(800px 800px at 0% 100%, rgba(211,47,47,.14) 0%, transparent 60%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 22px),
+      #0b0d0f}
+  .slide.on{display:block}
+  .frame{position:absolute;inset:26px;border:2px solid rgba(212,175,95,.55);border-radius:18px;pointer-events:none}
+  .frame:after{content:"";position:absolute;inset:8px;border:1px solid rgba(212,175,95,.25);border-radius:12px}
+  .wm{position:absolute;right:-160px;bottom:60px;width:700px;opacity:.07;filter:invert(1)}
+
+  .gold{background:linear-gradient(180deg,var(--gold2) 0%,var(--gold) 45%,var(--gold3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* header */
+  .top{display:flex;align-items:center;gap:16px;position:relative;z-index:2}
+  .top img{width:70px;filter:invert(1)}
+  .top b{font-family:"Times New Roman",Georgia,serif;font-size:28px;letter-spacing:2px}
+  .top small{display:block;font-size:14px;letter-spacing:3px;color:var(--muted);margin-top:3px}
+  .date{position:absolute;top:80px;right:76px;z-index:3;font-size:24px;font-weight:800;color:var(--ink);
+    background:linear-gradient(180deg,var(--gold2),var(--gold));padding:12px 22px;border-radius:40px;box-shadow:0 6px 24px rgba(212,175,95,.35)}
+
+  /* ribbon */
+  .ribbon{display:inline-flex;align-items:center;gap:14px;margin-top:70px;background:var(--red);color:#fff;
+    font-size:30px;font-weight:900;letter-spacing:4px;padding:14px 28px;border-radius:6px;box-shadow:0 10px 30px rgba(211,47,47,.45)}
+  .ribbon i{width:14px;height:14px;border-radius:50%;background:#fff;display:inline-block;box-shadow:0 0 0 6px rgba(255,255,255,.25)}
+
+  /* cover */
+  .q{font-size:86px;line-height:1.02;font-weight:900;letter-spacing:-2px;margin-top:40px}
+  .q .hl{background:var(--ivory);color:var(--ink);padding:0 16px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .stamp{position:absolute;right:70px;top:640px;width:340px;height:340px;border-radius:50%;
+    border:10px solid var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform:rotate(-14deg);color:var(--red);background:rgba(211,47,47,.08);box-shadow:0 0 0 6px rgba(211,47,47,.25) inset}
+  .stamp b{font-size:150px;font-weight:900;line-height:.9;letter-spacing:-4px}
+  .stamp span{font-size:26px;font-weight:900;letter-spacing:5px;margin-top:8px}
+  .sub{font-size:40px;line-height:1.3;font-weight:700;margin-top:40px;max-width:560px;color:#d9d4c8}
+  .sub em{font-style:normal}
+  .chip{position:absolute;left:76px;bottom:150px;font-size:26px;font-weight:700;padding:14px 26px;border:2px solid var(--gold);border-radius:50px;color:var(--gold2)}
+  .swipe{position:absolute;right:76px;bottom:150px;display:flex;align-items:center;gap:14px;font-size:28px;font-weight:900;letter-spacing:3px;color:var(--ink);
+    background:var(--gold);padding:14px 26px;border-radius:50px}
+
+  /* headings */
+  h2{font-size:72px;font-weight:900;line-height:1.05;margin-top:70px;letter-spacing:-1.5px;position:relative;z-index:2}
+  .step{font-size:24px;font-weight:900;letter-spacing:5px;color:var(--red);margin-top:60px}
+
+  /* family tree */
+  .tree{margin-top:50px;display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2}
+  .node{width:620px;display:flex;align-items:center;gap:26px;padding:24px 30px;border-radius:20px;background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.12)}
+  .node .ic{width:86px;height:86px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:46px;background:linear-gradient(180deg,var(--gold2),var(--gold3))}
+  .node h4{font-size:38px;font-weight:900}
+  .node p{font-size:26px;color:#cfc9bc;margin-top:4px}
+  .node.no{border-color:var(--red);background:rgba(211,47,47,.12)}
+  .node.no .ic{background:var(--red);color:#fff}
+  .arrow{height:62px;width:4px;background:var(--gold);position:relative}
+  .arrow:after{content:"";position:absolute;bottom:-4px;left:-10px;border:12px solid transparent;border-top:16px solid var(--gold)}
+  .arrow.x{background:repeating-linear-gradient(180deg,var(--red) 0 10px,transparent 10px 18px)}
+  .arrow.x:after{border-top-color:var(--red)}
+  .arrow.x b{position:absolute;left:30px;top:6px;font-size:28px;font-weight:900;color:var(--red);white-space:nowrap}
+  .cite{position:absolute;left:76px;right:76px;bottom:120px;font-size:24px;line-height:1.5;color:var(--muted);z-index:2}
+  .cite b{color:var(--ivory)}
+
+  /* holding cards */
+  .cards{margin-top:46px;display:flex;flex-direction:column;gap:24px;position:relative;z-index:2}
+  .c{display:flex;gap:28px;align-items:flex-start;padding:28px 32px;border-radius:22px;background:rgba(255,255,255,.06);border-left:10px solid var(--gold)}
+  .c .n{flex:none;width:70px;height:70px;border-radius:16px;background:linear-gradient(180deg,var(--gold2),var(--gold3));color:var(--ink);font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center}
+  .c p{font-size:35px;line-height:1.35}
+  .c b{color:var(--gold2)}
+  .c.red{border-left-color:var(--red)} .c.red .n{background:var(--red);color:#fff}
+
+  /* takeaway */
+  .big{margin-top:46px;position:relative;z-index:2;padding:40px 44px;border-radius:26px;background:linear-gradient(135deg,var(--gold2),var(--gold) 50%,var(--gold3));color:var(--ink)}
+  .big small{font-size:24px;font-weight:900;letter-spacing:5px}
+  .big p{font-size:46px;font-weight:900;line-height:1.18;margin-top:12px}
+  .tips{margin-top:36px;position:relative;z-index:2}
+  .tips div{font-size:34px;line-height:1.35;padding:18px 0 18px 64px;position:relative;border-bottom:1px solid rgba(255,255,255,.1)}
+  .tips div:before{content:"✓";position:absolute;left:0;top:16px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:900;font-size:26px;display:flex;align-items:center;justify-content:center}
+  .save{position:absolute;left:76px;right:76px;bottom:150px;display:flex;align-items:center;gap:22px;z-index:2;
+    padding:24px 30px;border-radius:20px;border:2px dashed var(--gold)}
+  .save .bm{font-size:54px}
+  .save p{font-size:31px;font-weight:800;line-height:1.25}
+  .save p span{color:var(--gold2)}
+  .disc{position:absolute;left:76px;right:76px;bottom:70px;font-size:19px;color:var(--muted);z-index:2}
+  .pg{position:absolute;right:76px;bottom:70px;font-size:22px;font-weight:800;color:var(--muted);z-index:2}
+</style></head>
+<body>
+
+<!-- SLIDE 1: HOOK -->
+<section class="slide" id="s1">
+  <img class="wm" src="../../assets/emblem.png">
+  <div class="top"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>ADVOCATES &amp; LEGAL CONSULTANTS</small></div></div>
+  <div class="ribbon"><i></i>SUPREME COURT VERDICT</div>
+  <div class="q">Can a Grandson<br>Claim <span class="gold">Grandfather's</span><br><span class="hl">Property?</span></div>
+  <div class="sub">Not if his father inherited it under <em class="gold">Section 8</em> of the Hindu Succession Act.</div>
+  <div class="stamp"><b>NO</b><span>BIRTHRIGHT</span></div>
+  <div class="chip">Judgment: 6 Nov 2026 · 2026 INSC 1208</div>
+  <div class="swipe">SWIPE <span style="font-size:34px">&#10140;</span></div>
+</section>
+
+<!-- SLIDE 2: FAMILY TREE -->
+<section class="slide" id="s2">
+  <img class="wm" src="../../assets/emblem.png">
+  <div class="top"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>SUPREME COURT VERDICT</small></div></div>
+  <div class="step">THE CASE</div>
+  <h2 style="margin-top:14px">Who Gets <span class="gold">What?</span></h2>
+  <div class="tree">
+    <div class="node"><div class="ic">&#128116;</div><div><h4>Grandfather</h4><p>Died after 1956, property passed on</p></div></div>
+    <div class="arrow"></div>
+    <div class="node"><div class="ic">&#128104;</div><div><h4>Father</h4><p>Inherits under Section 8 → <b style="color:var(--gold2)">his own property</b></p></div></div>
+    <div class="arrow x"><b>&#10007; no right by birth</b></div>
+    <div class="node no"><div class="ic">&#128102;</div><div><h4>Grandson</h4><p>Sued for a share, calling it "ancestral"</p></div></div>
+  </div>
+  <div class="cite"><b>J. Rajesh (Minor) v. M. Kumaran (Dead) through LRs</b><br>Justice Augustine George Masih &amp; Justice Sunita Agarwal</div>
+</section>
+
+<!-- SLIDE 3: HOLDINGS -->
+<section class="slide" id="s3">
+  <img class="wm" src="../../assets/emblem.png">
+  <div class="top"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>SUPREME COURT VERDICT</small></div></div>
+  <div class="step">WHAT THE COURT HELD</div>
+  <h2 style="margin-top:14px">The <span class="gold">Verdict</span></h2>
+  <div class="cards">
+    <div class="c"><div class="n">1</div><p>Property inherited under <b>Section 8</b> is the son's <b>individual property</b>, not joint family property.</p></div>
+    <div class="c red"><div class="n">2</div><p>His son gets <b>no right by birth</b> and cannot claim it as "ancestral".</p></div>
+    <div class="c"><div class="n">3</div><p>Section 8 is a <b>self-contained</b> code. Section 6 does not apply here.</p></div>
+    <div class="c"><div class="n">4</div><p>Following <b>Chander Sen</b>, the appeal was <b>dismissed</b>.</p></div>
+  </div>
+</section>
+
+<!-- SLIDE 4: TAKEAWAY -->
+<section class="slide" id="s4">
+  <img class="wm" src="../../assets/emblem.png">
+  <div class="top"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>KNOW THE LAW</small></div></div>
+  <div class="big"><small>KEY TAKEAWAY</small><p>Not every grandfather's property is "ancestral". How and when it was inherited decides it.</p></div>
+  <div class="tips">
+    <div>A father can usually deal with such property <b style="color:var(--gold2)">as his own</b>.</div>
+    <div>Check the <b style="color:var(--gold2)">date of death</b> &amp; <b style="color:var(--gold2)">mode of inheritance</b> before any partition claim.</div>
+  </div>
+  <div class="save"><div class="bm">&#128278;</div><p><span>SAVE</span> this post &amp; <span>SHARE</span> it with someone who has a family property matter.</p></div>
+  <div class="disc">For general information only. Not legal advice or a solicitation of work.</div>
+</section>
+
+<script>
+  // Date shown on every slide — set this to the day the post goes live.
+  const POST_DATE = "23 November 2026";
+  document.querySelectorAll('.slide').forEach((s,i,all)=>{
+    s.insertAdjacentHTML('beforeend','<div class="frame"></div><div class="date">'+POST_DATE+'</div>');
+    if(i>0 && i<all.length-1) s.insertAdjacentHTML('beforeend','<div class="pg">'+(i+1)+'/'+all.length+'</div>');
+  });
+  const n = new URLSearchParams(location.search).get('s') || '1';
+  document.getElementById('s'+n).classList.add('on');
+</script>
+</body></html>
