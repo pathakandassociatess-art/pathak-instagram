@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import path from 'node:path';
 const html = path.resolve(process.argv[2]);
 const dir = path.dirname(html);
-const browser = await chromium.launch();
+const browser = await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
 const page = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
 for (let i = 1; i <= 4; i++) {
   await page.goto('file://' + html + '?s=' + i);
