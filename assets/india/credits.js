@@ -1,5 +1,5 @@
 // Photo credits for Indian court photos (Wikimedia Commons). Required by their licences.
-// Loaded by every slide HTML; it prints a small credit on each slide for the photo it uses.
+// Loaded by every slide HTML; prints a small credit on each slide's photo.
 window.PHOTO_CREDITS = {
   "sc-dome.jpg":             "Supreme Court of India · Photo: Subhashish Panigrahi / Wikimedia Commons, CC BY-SA 4.0",
   "sc-dome-close.jpg":       "Supreme Court of India · Photo: Subhashish Panigrahi / Wikimedia Commons, CC BY-SA 4.0",
@@ -18,9 +18,8 @@ window.addEventListener('DOMContentLoaded', function(){
     var ph = s.querySelector('.photo'); if(!ph) return;
     var m = getComputedStyle(ph).backgroundImage.match(/india\/([^"')]+)/); if(!m) return;
     var t = window.PHOTO_CREDITS[m[1]]; if(!t) return;
-    var d = document.createElement('div');
-    d.textContent = t;
-    d.style.cssText = 'position:absolute;right:46px;bottom:32px;z-index:7;font:500 13px "Helvetica Neue",Arial,sans-serif;color:rgba(245,241,232,.55);letter-spacing:.2px';
-    s.appendChild(d);
+    var d = document.createElement('div'); d.className = 'credit'; d.textContent = t;
+    d.style.cssText = 'position:absolute;right:20px;bottom:12px;z-index:9;font:500 13px Inter,"Helvetica Neue",Arial,sans-serif;color:rgba(255,255,255,.85);text-shadow:0 1px 3px rgba(0,0,0,.8);letter-spacing:.2px';
+    (ph.closest('.photowrap') || ph).appendChild(d);
   });
 });
