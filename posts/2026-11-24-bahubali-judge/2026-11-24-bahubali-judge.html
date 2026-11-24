@@ -7,6 +7,7 @@
   @font-face{font-family:Oswald;src:url(../../assets/fonts/Oswald.ttf);font-weight:200 700}
   @font-face{font-family:Inter;src:url(../../assets/fonts/Inter.ttf);font-weight:100 900}
   @font-face{font-family:Playfair;src:url(../../assets/fonts/PlayfairDisplay.ttf);font-weight:400 900}
+  @font-face{font-family:Cinzel;src:url(../../assets/fonts/Cinzel.ttf);font-weight:400 900}
 
   :root{--paper:#fffaf1;--ink:#111;--ink2:#3a3a3a;--red:#c8102e;--red2:#9e0b23;--gold:#e0a526;--mark:#ffe14d}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -20,9 +21,11 @@
   .top{position:absolute;left:60px;right:60px;top:44px;display:flex;align-items:center;justify-content:space-between;z-index:5}
   .brand{display:flex;align-items:center;gap:14px}
   .brand img{width:62px}
-  .brand b{font-family:Playfair,Georgia,serif;font-weight:800;font-size:27px;letter-spacing:1px;display:block;line-height:1}
-  .brand small{display:block;font:600 13px Inter;letter-spacing:3px;color:var(--ink2);margin-top:6px}
-  .date{font:600 26px Oswald;letter-spacing:1px;color:#fff;background:var(--red);padding:10px 20px;border-radius:6px;box-shadow:0 6px 0 var(--red2)}
+  .brand b{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:28px;letter-spacing:1.5px;display:block;line-height:1}
+  .brand small{display:block;font:600 13px Inter;letter-spacing:3px;color:var(--ink2);margin-top:7px}
+  .date{background:var(--ink);color:#fff;border-radius:12px;padding:10px 22px 12px;text-align:center;border-bottom:6px solid var(--red);box-shadow:0 8px 22px rgba(0,0,0,.25);min-width:118px}
+  .date b{display:block;font:400 52px Anton,Impact,sans-serif;line-height:1}
+  .date span{display:block;font:800 15px Inter;letter-spacing:3.5px;color:var(--gold);margin-top:5px}
 
   /* COVER */
   .tag{position:absolute;left:60px;top:150px;display:inline-flex;gap:10px;align-items:center;background:var(--ink);color:#fff;font:600 26px Oswald;letter-spacing:4px;padding:10px 20px}
@@ -98,7 +101,7 @@
     </div>
     <div class="quote"><p>“Enough of adventure.”</p><small>— SUPREME COURT TO THE JUDGE</small></div>
   </div>
-  <div class="pg"></div>
+
 </section>
 
 <!-- SLIDE 3 WHAT THE COURT SAID -->
@@ -115,7 +118,7 @@
       <div class="row"><div class="ic">4</div><div>The judge was advised to <b>undergo training</b> at the National Judicial Academy.</div></div>
     </div>
   </div>
-  <div class="pg"></div>
+
 </section>
 
 <!-- SLIDE 4 TAKEAWAY -->
@@ -131,14 +134,14 @@
   </div>
   <div class="save"><div class="bm">🔖</div><p><span>SAVE</span> this &amp; <span>SHARE</span> it with a lawyer friend.</p></div>
   <div class="disc">Bench: CJI Surya Kant, Justices Joymalya Bagchi &amp; V. Mohana. Sources: ANI, LiveLaw, NewsBytes. For general information only; not legal advice or a solicitation of work.</div>
-  <div class="pg"></div>
+
 </section>
 
 <script>
   const POST_DATE = "24 November 2026";
-  document.querySelectorAll('[data-date]').forEach(e=>e.textContent=POST_DATE);
-  const all=[...document.querySelectorAll('.slide')];
-  all.forEach((s,i)=>{const p=s.querySelector('.pg'); if(p) p.textContent=(i+1)+'/'+all.length;});
+  // Date badge: big day number + short month & year (e.g. "24" / "NOV 2026")
+  const [dd, mon, yy] = POST_DATE.split(' ');
+  document.querySelectorAll('[data-date]').forEach(e=>{e.innerHTML='<b>'+dd+'</b><span>'+mon.slice(0,3).toUpperCase()+' '+yy+'</span>';});
   const n = new URLSearchParams(location.search).get('s') || '1';
   document.getElementById('s'+n).classList.add('on');
 </script>
