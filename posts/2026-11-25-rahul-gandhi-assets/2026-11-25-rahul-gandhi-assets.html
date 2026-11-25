@@ -1,0 +1,155 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>Pathak & Associates – Rahul Gandhi assets</title>
+<style>
+  /* ===== Fonts (bundled in repo, Open Font Licence) ===== */
+  @font-face{font-family:Anton;src:url(../../assets/fonts/Anton-Regular.ttf)}
+  @font-face{font-family:Oswald;src:url(../../assets/fonts/Oswald.ttf);font-weight:200 700}
+  @font-face{font-family:Inter;src:url(../../assets/fonts/Inter.ttf);font-weight:100 900}
+  @font-face{font-family:Playfair;src:url(../../assets/fonts/PlayfairDisplay.ttf);font-weight:400 900}
+  @font-face{font-family:Cinzel;src:url(../../assets/fonts/Cinzel.ttf);font-weight:400 900}
+
+  :root{--paper:#fffaf1;--ink:#111;--ink2:#3a3a3a;--red:#c8102e;--red2:#9e0b23;--gold:#e0a526;--mark:#ffe14d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+  body{font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--ink)}
+  .slide{display:none;width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--paper)}
+  .slide.on{display:block}
+  .gold{color:var(--red)}
+
+  /* top bar */
+  .top{position:absolute;left:60px;right:60px;top:44px;display:flex;align-items:center;justify-content:space-between;z-index:5}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{width:62px}
+  .brand b{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:28px;letter-spacing:1.5px;display:block;line-height:1}
+  .brand small{display:block;font:600 13px Inter;letter-spacing:3px;color:var(--ink2);margin-top:7px}
+  .date{background:var(--ink);color:#fff;border-radius:12px;padding:10px 22px 12px;text-align:center;border-bottom:6px solid var(--red);box-shadow:0 8px 22px rgba(0,0,0,.25);min-width:118px}
+  .date b{display:block;font:400 52px Anton,Impact,sans-serif;line-height:1}
+  .date span{display:block;font:800 15px Inter;letter-spacing:3.5px;color:var(--gold);margin-top:5px}
+
+  /* COVER */
+  .tag{position:absolute;left:60px;top:150px;display:inline-flex;gap:10px;align-items:center;background:var(--ink);color:#fff;font:600 26px Oswald;letter-spacing:4px;padding:10px 20px}
+  .tag i{width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 0 5px rgba(200,16,46,.35)}
+  .headline{position:absolute;left:56px;right:56px;top:222px;font-family:Anton,Impact,sans-serif;font-size:124px;line-height:1.08;letter-spacing:.5px}
+  .headline .q{color:var(--red)}
+  .headline .hl{display:inline-block;background:var(--red);color:#fff;padding:2px 18px 8px;margin-top:10px;transform:rotate(-1.5deg);box-shadow:8px 8px 0 var(--ink)}
+  .headline .s2{display:block;font-size:68px;line-height:1.08;margin-top:26px;color:var(--ink)}
+  .headline .s2 em{font-style:normal;color:var(--red)}
+  .photowrap{position:absolute;left:0;right:0;bottom:0;height:560px;clip-path:polygon(0 70px,100% 0,100% 100%,0 100%)}
+  .photowrap .photo{position:absolute;inset:0;background-size:cover;background-position:center 35%}
+  .photowrap:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55) 100%)}
+  .stripe{position:absolute;left:0;right:0;bottom:560px;height:14px;transform-origin:left bottom;transform:skewY(-3.72deg) translateY(70px);background:var(--gold);z-index:2}
+  .pills{position:absolute;left:56px;right:56px;bottom:42px;display:flex;justify-content:space-between;align-items:center;z-index:6}
+  .pill{font:600 26px Oswald;letter-spacing:.5px;background:#fff;color:var(--ink);padding:12px 22px;border-radius:40px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+  .swipe{font:700 28px Oswald;letter-spacing:3px;color:#fff;background:var(--red);padding:12px 26px;border-radius:40px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+
+  /* judge portrait (cover) */
+  .judge{position:absolute;right:56px;top:700px;width:290px;z-index:7;text-align:center}
+  .judge .face{width:290px;height:290px;border-radius:50%;background-size:cover;background-position:center 22%;border:10px solid #fff;box-shadow:0 0 0 8px var(--red),0 18px 40px rgba(0,0,0,.45)}
+  .judge span{display:inline-block;margin-top:14px;background:var(--ink);color:#fff;font:600 24px Oswald;letter-spacing:2px;padding:6px 16px;border-radius:6px}
+  .judge small{display:block;margin-top:6px;font:500 12px Inter;color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.9)}
+
+  /* INNER slides */
+  .band{position:absolute;left:0;right:0;top:0;height:380px;clip-path:polygon(0 0,100% 0,100% 310px,0 100%)}
+  .band .photo{position:absolute;inset:0;background-size:cover;background-position:center 40%}
+  .band:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,250,241,.92) 0,rgba(255,250,241,.55) 120px,rgba(255,250,241,0) 200px)}
+  .band .credit{bottom:84px !important}
+  .body{position:absolute;left:60px;right:60px;top:410px}
+  .kick{font:600 26px Oswald;letter-spacing:5px;color:var(--red)}
+  h2{font-family:Anton,Impact,sans-serif;font-size:84px;line-height:1.02;margin-top:6px}
+  .mk{background:linear-gradient(180deg,transparent 52%,var(--mark) 52%);padding:0 4px}
+  .rows{margin-top:30px}
+  .row{display:flex;gap:22px;align-items:flex-start;margin-bottom:30px;font-size:38px;line-height:1.36;color:var(--ink2)}
+  .row b{color:var(--ink)}
+  .row .ic{flex:none;width:64px;height:64px;border-radius:14px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:34px}
+  .quote{margin-top:16px;position:relative;background:var(--ink);color:#fff;border-radius:22px;padding:30px 40px 30px 110px}
+  .quote:before{content:"\201C";position:absolute;left:26px;top:-14px;font:400 150px Playfair,Georgia,serif;color:var(--red)}
+  .quote p{font:400 52px Anton;letter-spacing:.5px}
+  .quote small{display:block;font:600 22px Oswald;letter-spacing:3px;color:var(--gold);margin-top:6px}
+  .nums .row .ic{background:var(--red);color:#fff;font:400 38px Anton}
+  .take{margin-top:28px;background:var(--red);color:#fff;border-radius:22px;padding:34px 40px;box-shadow:0 10px 0 var(--red2)}
+  .take small{font:600 22px Oswald;letter-spacing:5px;color:#ffd7dd}
+  .take p{font:400 54px Anton;line-height:1.1;margin-top:8px}
+  .tips{margin-top:36px}
+  .tips .row .ic{background:var(--gold);color:var(--ink);font:900 32px Inter}
+  .save{position:absolute;left:60px;right:60px;bottom:110px;display:flex;align-items:center;gap:20px;border:3px dashed var(--red);border-radius:18px;padding:20px 26px;background:#fff}
+  .save .bm{font-size:46px}
+  .save p{font:600 32px Oswald;letter-spacing:.5px}
+  .save span{color:var(--red)}
+  .disc{position:absolute;left:60px;right:140px;bottom:46px;font-size:18px;line-height:1.4;color:#666}
+  .pg{position:absolute;right:60px;bottom:46px;font:600 24px Oswald;color:#999}
+</style>
+<script src="../../assets/india/credits.js"></script></head>
+<body>
+
+<!-- SLIDE 1 COVER -->
+<section class="slide" id="s1">
+  <div class="top"><div class="brand"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>ADVOCATES &amp; LEGAL CONSULTANTS</small></div></div><div class="date" data-date></div></div>
+  <div class="tag"><i></i>SUPREME COURT</div>
+  <div class="headline"><span class="q">Rahul Gandhi</span><br><span class="hl">Must Be Heard</span>
+    <span class="s2">SC Sets Aside Allahabad HC Order Sending <em>CBI &amp; ED</em> To Verify Assets Complaint</span></div>
+  <div class="stripe"></div>
+  <div class="photowrap"><div class="photo" style="background-image:url(../../assets/india/sc-dome.jpg)"></div></div>
+  <div class="judge"><div class="face" style="background-image:url(../../assets/judges/cji-surya-kant.jpg)"></div><span>CJI SURYA KANT</span><small>Photo: Supreme Court of India / Wikimedia Commons, GODL-India</small></div>
+  <div class="pills"><div class="pill">CJI Surya Kant-led Bench · 25 Nov 2026</div><div class="swipe">SWIPE ➜</div></div>
+</section>
+
+<!-- SLIDE 2 WHAT HAPPENED -->
+<section class="slide" id="s2">
+  <div class="band"><div class="photo" style="background-image:url(../../assets/india/hc-allahabad.jpg)"></div></div>
+  <div class="top"><div class="brand"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>SUPREME COURT</small></div></div><div class="date" data-date></div></div>
+  <div class="body">
+    <div class="kick">02 · WHAT HAPPENED</div>
+    <h2>The Assets <span class="mk">Complaint</span></h2>
+    <div class="rows">
+      <div class="row"><div class="ic">📄</div><div>A BJP worker, <b>Vignesh Shishir</b>, filed a petition in the <b>Allahabad High Court</b> alleging disproportionate assets.</div></div>
+      <div class="row"><div class="ic">🏛️</div><div>The High Court had asked the <b>CBI and ED</b> to verify the complaint.</div></div>
+      <div class="row"><div class="ic">⚖️</div><div>Rahul Gandhi challenged this in the <b>Supreme Court</b>.</div></div>
+    </div>
+    <div class="quote"><p>Gandhi must be impleaded and heard.</p><small>— DIRECTION OF THE SUPREME COURT</small></div>
+  </div>
+
+</section>
+
+<!-- SLIDE 3 WHAT THE COURT SAID -->
+<section class="slide" id="s3">
+  <div class="band"><div class="photo" style="background-image:url(../../assets/topics/parliament.jpg)"></div></div>
+  <div class="top"><div class="brand"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>SUPREME COURT</small></div></div><div class="date" data-date></div></div>
+  <div class="body">
+    <div class="kick">03 · WHAT THE SUPREME COURT SAID</div>
+    <h2>Hear Him <span class="mk">First</span></h2>
+    <div class="rows nums">
+      <div class="row"><div class="ic">1</div><div>The High Court's directions to <b>CBI and ED</b> were <b>set aside</b>.</div></div>
+      <div class="row"><div class="ic">2</div><div>The matter goes back to the <b>Allahabad High Court</b> for fresh consideration.</div></div>
+      <div class="row"><div class="ic">3</div><div>The petitioner must <b>implead Gandhi</b> as a respondent.</div></div>
+      <div class="row"><div class="ic">4</div><div>Gandhi gets a chance to be <b>heard afresh</b>, including on maintainability.</div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SLIDE 4 TAKEAWAY -->
+<section class="slide" id="s4">
+  <div class="band"><div class="photo" style="background-image:url(../../assets/india/hc-allahabad-inner.jpg)"></div></div>
+  <div class="top"><div class="brand"><img src="../../assets/emblem.png"><div><b>PATHAK &amp; ASSOCIATES</b><small>KNOW THE LAW</small></div></div><div class="date" data-date></div></div>
+  <div class="body" style="top:380px">
+    <div class="take"><small>KEY TAKEAWAY</small><p>Whoever is accused must be heard before directions that affect them.</p></div>
+    <div class="rows tips">
+      <div class="row"><div class="ic">✓</div><div>This is a <b>procedural</b> ruling: <b>all questions</b> are left open for the High Court to decide afresh.</div></div>
+      <div class="row"><div class="ic">✓</div><div>The right to <b>natural justice</b> (audi alteram partem) applies to <b>everyone</b>.</div></div>
+    </div>
+  </div>
+  <div class="save"><div class="bm">🔖</div><p><span>SAVE</span> this &amp; <span>SHARE</span> it with a lawyer friend.</p></div>
+  <div class="disc">Bench: CJI Surya Kant, Justices Joymalya Bagchi &amp; V. Mohana. Sources: LiveLaw, Bar &amp; Bench, National Herald, Scroll. For general information only; not legal advice or a solicitation of work.</div>
+
+</section>
+
+<script>
+  const POST_DATE = "25 November 2026";
+  // Date badge: big day number + short month & year (e.g. "24" / "NOV 2026")
+  const [dd, mon, yy] = POST_DATE.split(' ');
+  document.querySelectorAll('[data-date]').forEach(e=>{e.innerHTML='<b>'+dd+'</b><span>'+mon.slice(0,3).toUpperCase()+' '+yy+'</span>';});
+  const n = new URLSearchParams(location.search).get('s') || '1';
+  document.getElementById('s'+n).classList.add('on');
+</script>
+</body></html>
